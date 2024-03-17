@@ -1,14 +1,16 @@
 import React from 'react';
 import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import AntIcon from 'react-native-vector-icons/AntDesign';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import UiText from '../ui/UiText';
 
-// Define the props interface
-interface FeedItemProps {
+export interface FeedItemProps {
   userName: string;
   userImageUri: string;
   postImageUri: string;
   likesCount: number;
   caption: string;
-  timestamp: string; // Consider the format you'll be using, e.g., "3 hours ago"
+  timestamp: string;
 }
 
 const FeedItem: React.FC<FeedItemProps> = ({
@@ -21,35 +23,38 @@ const FeedItem: React.FC<FeedItemProps> = ({
 }) => {
   return (
     <View style={styles.container}>
-      {/* User Info */}
       <View style={styles.userInfoSection}>
         <Image source={{uri: userImageUri}} style={styles.userImage} />
         <Text style={styles.userName}>{userName}</Text>
       </View>
 
-      {/* Post Image */}
       <Image source={{uri: postImageUri}} style={styles.postImage} />
 
-      {/* Interactions */}
       <View style={styles.interactionsSection}>
         <TouchableOpacity>
-          <Text style={styles.interactionIcon}>♥</Text>{' '}
-          {/* Replace with heart icon */}
+          <AntIcon
+            style={styles.interactionIcon}
+            name="hearto"
+            size={25}
+            color="#000"
+          />
         </TouchableOpacity>
+
         <TouchableOpacity>
-          <Text style={styles.interactionIcon}>💬</Text>{' '}
-          {/* Replace with comment icon */}
+          <FontAwesomeIcon
+            style={styles.interactionIcon}
+            name="comment-o"
+            size={25}
+            color="#000"
+          />
         </TouchableOpacity>
       </View>
 
-      {/* Likes */}
-      <Text style={styles.likes}>{likesCount} likes</Text>
+      <UiText style={styles.likes}>{likesCount} likes</UiText>
 
-      {/* Caption */}
-      <Text style={styles.caption}>{caption}</Text>
+      <UiText style={styles.caption}>{caption}</UiText>
 
-      {/* Timestamp */}
-      <Text style={styles.timestamp}>{timestamp}</Text>
+      <UiText style={styles.timestamp}>{timestamp}</UiText>
     </View>
   );
 };
@@ -74,16 +79,16 @@ const styles = StyleSheet.create({
   },
   postImage: {
     width: '100%',
-    height: 400, // Adjust based on your needs
+    height: 400,
   },
   interactionsSection: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: 10,
   },
   interactionIcon: {
-    marginRight: 15,
-    fontSize: 24,
+    marginRight: 20,
   },
   likes: {
     fontWeight: 'bold',

@@ -3,11 +3,9 @@ import {View, ScrollView, StyleSheet, TextInput, Image} from 'react-native';
 import UiButton from '../components/ui/UiButton';
 import UiText from '../components/ui/UiText';
 import COLORS from '../constants/colors';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../navigation/RootNaviation';
+import {LoginScreenProps} from '../types/navigation';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'login'>;
-const LoginScreen = ({navigation}: Props) => {
+const LoginScreen = ({}: LoginScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,7 +35,7 @@ const LoginScreen = ({navigation}: Props) => {
           <UiButton
             styleProp={{width: '80%', marginTop: 20}}
             title="Login"
-            onPress={() => navigation.navigate('feed')}
+            onPress={() => console.log('Login')}
           />
           <UiText style={styles.forgottenPasswordText}>
             Forgotten Password?

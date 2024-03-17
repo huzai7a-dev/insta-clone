@@ -29,8 +29,8 @@ const UiButton = ({
     <TouchableOpacity
       onPress={onPress}
       style={[
-        styleProp,
         styles.button,
+        styleProp,
         {backgroundColor},
         disabled && styles.disabledButton,
       ]}

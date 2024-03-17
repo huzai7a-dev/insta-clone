@@ -1,19 +1,32 @@
 import React from 'react';
-import {View, Image, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  StyleProp,
+  TextStyle,
+} from 'react-native';
 import COLORS from '../../constants/colors';
 
 interface StoryProps {
   imageUri: string;
   isNewStory: boolean;
   userName: string;
+  userNameStyles?: StyleProp<TextStyle>;
 }
-const StoryCircle = ({imageUri, isNewStory, userName}: StoryProps) => {
+const StoryCircle = ({
+  imageUri,
+  isNewStory,
+  userName,
+  userNameStyles,
+}: StoryProps) => {
   return (
     <View style={styles.container}>
       <View style={[styles.story, isNewStory ? styles.newStory : null]}>
         <Image source={{uri: imageUri}} style={styles.image} />
       </View>
-      <Text style={styles.userName}>{userName}</Text>
+      <Text style={[styles.userName, userNameStyles]}>{userName}</Text>
     </View>
   );
 };

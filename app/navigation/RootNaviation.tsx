@@ -1,31 +1,27 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginScreen from '../screens/login';
-import FeedScreen from '../screens/Feed';
+import MainNavigator from './MainNavigator';
+import AuthNavigator from './AuthNavigator';
 
-export type RootStackParamList = {
-  login: undefined;
-  feed: undefined;
+type RootStackParamList = {
+  Auth: undefined;
+  MainApp: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const userAuthenticated = true;
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="feed">
-        <Stack.Screen
-          name="login"
-          component={LoginScreen}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
-          name="feed"
-          component={FeedScreen}
-          options={{header: () => null}}
-        />
-      </Stack.Navigator>
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
+        {userAuthenticated ? (
+          <RootStack.Screen name="MainApp" component={MainNavigator} />
+        ) : (
+          <RootStack.Screen name="Auth" component={AuthNavigator} />
+        )}
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
